@@ -7,7 +7,7 @@ export const environment = {
   EMPLOYEES_APP_URL: 'http://localhost:3000',
   PRODUCTS_APP_URL: 'http://localhost:8080',
   BILLING_APP_URL: 'http://localhost:3500',
-  ORDER_MICROSERVICE_URL: ''
+  ORDER_MICROSERVICE_URL: 'https://localhost:44300/'
 };
 
 /*

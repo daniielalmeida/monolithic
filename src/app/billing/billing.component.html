@@ -7,17 +7,19 @@
     margin: 0;
     background-color: white;
     overflow: hidden;">
-    <p-card>
-        <p-table [value]="orders" dataKey="name" responsiveLayout="scroll">
+        <p-table [value]="orders" dataKey="id" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 3rem"></th>
-                    <th pSortableColumn="CustomerName">Name <p-sortIcon field="CustomerName"></p-sortIcon>
+                    <th>Id</th>
+                    <th pSortableColumn="customerName">Name <p-sortIcon field="customerName"></p-sortIcon>
                     </th>
                     <th>Date</th>
-                    <th pSortableColumn="total">Total <p-sortIcon field="GrandTotal"></p-sortIcon>
+                    <th pSortableColumn="grandTotal">Grand Total <p-sortIcon field="grandTotal"></p-sortIcon>
                     </th>
-                    <th pSortableColumn="Status">Status <p-sortIcon field="Status"></p-sortIcon>
+                    <th pSortableColumn="totalPaid">Total Paid <p-sortIcon field="totalPaid"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
                     </th>
                 </tr>
             </ng-template>
@@ -25,49 +27,53 @@
                 <tr>
                     <td>
                         <button type="button" pButton pRipple [pRowToggler]="order"
+                            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
                             class="p-button-text p-button-rounded p-button-plain"
-                            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                            ></button>
                     </td>
-                    <td>{{order.CustomerName}}</td>
-                    <td>{{order.DateTime}}</td>
-                    <td>{{order.GrandTotal | currency:'USD'}}</td>
-
-                    <td><span [class]="'product-badge status-' + product.Status.toLowerCase()">{{order.Status}}</span></td>
+                    <td>{{order.id}}</td>
+                    <td>{{order.customerName}}</td>
+                    <td>{{order.dateTime | date:'longDate'}}</td>
+                    <td>{{order.grandTotal | currency:'EUR'}}</td>
+                    <td>{{order.totalPaid | currency:'EUR'}}</td>
+                    <td><span [class]="'order-badge order-' + order.statusName.toLowerCase()">{{order.statusName}}</span></td>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="rowexpansion" let-product>
+            <ng-template pTemplate="rowexpansion" let-order>
                 <tr>
                     <td colspan="7">
                         <div class="p-p-3">
-                            <p-table [value]="order.ProductOrders" dataKey="Id">
+                            <p-table [value]="order.productOrders" dataKey="id">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th pSortableColumn="id">Id <p-sortIcon field="Id"></p-sortIcon>
+                                        <!-- <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon>
+                                        </th> -->
+                                        <th pSortableColumn="productName">Product <p-sortIcon field="productName"></p-sortIcon>
                                         </th>
-                                        <th pSortableColumn="ProductName">Product <p-sortIcon field="ProductName"></p-sortIcon>
+                                        <!-- <th>Image</th>
+                                        <th pSortableColumn="rating">Rating <p-sortIcon field="rating"></p-sortIcon>
+                                        </th> -->
+                                        <th pSortableColumn="quantity">Quantity <p-sortIcon field="quantity"></p-sortIcon>
                                         </th>
-                                        <th>Image</th>
-                                        <th pSortableColumn="Rating">Rating <p-sortIcon field="Rating"></p-sortIcon>
+                                        <th pSortableColumn="amount">Price <p-sortIcon field="amount"></p-sortIcon>
                                         </th>
-                                        <th pSortableColumn="Quantity">Quantity <p-sortIcon field="Quantity"></p-sortIcon>
-                                        </th>
-                                        <th pSortableColumn="Amount">Price <p-sortIcon field="Amount"></p-sortIcon>
-                                        </th>
-                                        <th pSortableColumn="TotalAmount">Total <p-sortIcon field="TotalAmount"></p-sortIcon>
+                                        <th>Discount</th>
+                                        <th pSortableColumn="totalAmount">Total <p-sortIcon field="totalAmount"></p-sortIcon>
                                         </th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-product>
                                     <tr>
-                                        <td>{{product.Id}}</td>
-                                        <td>{{product.ProductName}}</td>
-                                        <td><img [src]="order.image" [alt]="product.name" width="100" class="p-shadow-4" /></td>
-                                        <td>
+                                        <!-- <td>{{product.id}}</td> -->
+                                        <td>{{product.productName}}</td>
+                                        <!-- <td><img [src]=\"order.image" [alt]="product.name" width="100" class="p-shadow-4" /></td> -->
+                                        <!-- <td>
                                             <p-rating [ngModel]="product.Rating" [readonly]="true" [cancel]="false"></p-rating>
-                                        </td>
-                                        <td>{{product.Quantity}}</td>
-                                        <td>{{product.Amount | currency:'USD'}}</td>
-                                        <td>{{product.TotalAmount | currency:'USD'}}</td>
+                                        </td> -->
+                                        <td>{{product.quantity}}</td>
+                                        <td>{{product.amount | currency:'EUR'}}</td>
+                                        <td>{{product.discountper}} %</td>
+                                        <td>{{product.totalAmount | currency:'EUR'}}</td>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="emptymessage">
@@ -81,5 +87,4 @@
                 </tr>
             </ng-template>
         </p-table>
-    </p-card>
 </div>

@@ -10,28 +10,32 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<ProductOrder[]> {
-    return this.http.get<ProductOrder[]>(environment.ORDER_MICROSERVICE_URL + '/Orders');
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(environment.ORDER_MICROSERVICE_URL + 'api/Order');
   }
   
 }
 
 export class Order {
-  Id: number;
-  ProductOrders: ProductOrder[];
-  CustomerName: string;
-  GrandTotal: number;
-  TotalPaid: number;
-  Status: number;
-  DateTime: Date;
+  id: number;
+  productOrders: ProductOrder[];
+  customerName: string;
+  grandTotal: number;
+  totalPaid: number;
+  status: number;
+  dateTime: Date;
+}
+
+export class OrderExtended extends Order {
+  statusName: string;
 }
 
 export class ProductOrder {
-  Id: number;
-  ProductId: number;
-  ProductName: string;
-  Quantity: number;
-  Amount: number;
-  DiscountPer: number;
-  TotalAmount: number;
+  id: number;
+  productId: number;
+  productName: string;
+  quantity: number;
+  amount: number;
+  discountPer: number;
+  totalAmount: number;
 }
