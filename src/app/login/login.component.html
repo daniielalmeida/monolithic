@@ -1,0 +1,31 @@
+<div style="height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;">
+    <div style="width: 1000px;">
+        <div class="col-lg-6 col-sm-12 offset-lg-3" style="text-align: center;">
+            <img src="../../assets/img/user2.png" style="height: 150px; width: 150px;">
+            <div style="padding: 0.75rem 1.25rem">
+                <h4 class="card-title" style="margin-top: 0;">Sign In</h4>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 offset-lg-3">
+            <div class="card card-chart" style="border-radius: 10px;">
+                <div style="padding: 0.75rem 1.25rem; margin-top: 30px;">
+                    <div>
+                        <span>Username</span>
+                        <input type="text" pInputText [(ngModel)]="username" style="width: 100%;">
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <span>Password</span>
+                        <input type="password" pInputText [(ngModel)]="password" style="width: 100%;">
+                    </div>
+                </div>
+                <div class="card-footer" style="margin-bottom: 30px;">
+                    <button class="p-button-rounded" style="width: 100%; border-radius: 4px;" pButton pRipple
+                        label="Sign In" type="button" (click)="onSignIn()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

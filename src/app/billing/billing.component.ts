@@ -28,9 +28,6 @@ export class BillingComponent implements OnInit {
         };
         this.orders.push(extendedOrder);
       });
-
-      console.log(this.orders);
     });
   }
-
 }
