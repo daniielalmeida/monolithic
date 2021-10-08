@@ -37,17 +37,17 @@ export class ProductService {
 }
 
 export class Product {
-  id: number;
-  productNumber: string;
-  productGenre: string;
-  name: string;
-  description: string;
-  specification: string;
-  price: number;
-  stick: number;
-  vendors: Vendor[];
-  image: string;
-  rating: number;
+  id?: number;
+  productNumber?: string;
+  productGenre?: string;
+  name?: string;
+  description?: string;
+  specification?: string;
+  price?: number;
+  stick?: number;
+  vendors?: Vendor[];
+  image?: string;
+  rating?: number;
 }
 
 export class Vendor {

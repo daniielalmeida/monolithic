@@ -77,8 +77,13 @@ export class ProductListComponent implements OnInit {
     this.product.rating = event.value;
   }
 
+  openNew() {
+    this.product = {};
+    this.submitted = false;
+    this.productDialog = true;
+  }
+
   saveProduct() {
-    console.log(this.product);
     this.submitted = true;
     if (this.product.name.trim()) {
       if (this.product.id) {
@@ -88,18 +93,18 @@ export class ProductListComponent implements OnInit {
           this.products[this.findIndexById(this.product.id)] = this.product;
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
           this.productDialog = false;
-          this.product = null;
+          this.product = {};
         });
       }
       else {
-        this.product.image = 'product-placeholder.svg';
+        this.product.image = 'https://www.primefaces.org/primeng/v11-lts/assets/showcase/images/demo/product/product-placeholder.svg';
         this.product.productGenre = this.productGenre.label;
         this.productService.createProduct(this.product).subscribe(res => {
-          this.product.id = res.id
+          this.product.id = res.id;
           this.products.push(this.product);
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
           this.productDialog = false;
-          this.product = null;
+          this.product = {};
         });
       }
       // this.products = [...this.products];

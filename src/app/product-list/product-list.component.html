@@ -9,6 +9,15 @@
   background-color: white;
   overflow: hidden;">
 
+  <div style="width: 100%;text-align: start; padding: 10px;">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+        placeholder="Search Product ..." style="width: 300px;" />
+    </span>
+    <button pButton pRipple label="Add Product" type="button" icon="pi pi-plus" (click)="openNew()" style="margin-left: 20px;"></button>
+  </div>
+
   <p-table #dt [value]="products" [rows]="10"
     [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
     [(selection)]="selectedProducts" [rowHover]="true" dataKey="id">
@@ -57,8 +66,7 @@
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
   styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <img [src]="product.image" [alt]="product.name" class="product-image" *ngIf="product.image" 
-    style="width: 150px;
+    <img [src]="product.image" [alt]="product.name" class="product-image" *ngIf="product.image" style="width: 150px;
       height: 150px;
       margin: 0px auto 0;
       display: block;">
