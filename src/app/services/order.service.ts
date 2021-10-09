@@ -34,6 +34,7 @@ export class ProductOrder {
   id: number;
   productId: number;
   productName: string;
+  productImage: string;
   quantity: number;
   amount: number;
   discountPer: number;
