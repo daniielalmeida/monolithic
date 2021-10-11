@@ -107,7 +107,6 @@ export class ProductListComponent implements OnInit {
           this.product = {};
         });
       }
-      // this.products = [...this.products];
     }
   }
 
